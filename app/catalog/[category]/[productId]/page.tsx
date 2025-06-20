@@ -44,7 +44,13 @@ export default async function DronePage({ params }: ProductPageProps) {
         <div className="bg-white w-full h-full flex flex-col pt-24 lg:justify-self-end">
           {/* Аккордеон  */}
           <div className="flex-1">
-            <ProductAccordion specs={productData.specs} />
+            <ProductAccordion
+              specs={Object.fromEntries(
+                Object.entries(productData.specs).filter(([, value]) =>
+                  Array.isArray(value)
+                )
+              )}
+            />
           </div>
 
           {/* Блок заказа */}

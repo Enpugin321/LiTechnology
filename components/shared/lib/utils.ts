@@ -1,4 +1,5 @@
 import { clsx, type ClassValue } from "clsx";
+import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
 import { twMerge } from "tailwind-merge";
 
 export function cn(...inputs: ClassValue[]) {
@@ -20,7 +21,7 @@ export const scrollToSection = (sectionId: string) => {
 
 export const navigateToSection = (
   sectionId: string,
-  router: any,
+  router: AppRouterInstance,
   currentPath: string
 ) => {
   // Если мы на главной странице, просто скроллим

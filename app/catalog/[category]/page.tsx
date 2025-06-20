@@ -5,7 +5,7 @@ import { CatalogContent } from "./catalog-content";
 import { CatalogSkeleton } from "./catalog-skeleton";
 
 interface Props {
-  params: { category: "drones" | "vacuums" };
+  params: Promise<{ category: "drones" | "vacuums" }>;
 }
 
 export default async function CatalogPage({ params }: Props) {
