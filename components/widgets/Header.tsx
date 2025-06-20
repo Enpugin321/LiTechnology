@@ -21,6 +21,21 @@ export const Header: React.FC<Props> = ({ className }) => {
   const pathname = usePathname();
 
   useEffect(() => {
+    const html = document.documentElement;
+
+    if (pathname === "/") {
+      html.classList.remove("dark");
+      html.classList.add("light");
+    } else if (pathname.startsWith("/catalog")) {
+      html.classList.remove("light");
+      html.classList.add("dark");
+    } else {
+      html.classList.remove("dark");
+      html.classList.add("light");
+    }
+  }, [pathname]);
+
+  useEffect(() => {
     const preventScroll = (e: TouchEvent) => {
       e.preventDefault();
     };

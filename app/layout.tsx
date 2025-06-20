@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
 import { montserrat } from "./ui/fonts";
-import { ThemeProvider as NextThemesProvider } from "next-themes";
-import { RouteThemeManager } from "@/components/shared/RouteThemeManager";
 import "./globals.css";
 import { Header } from "@/components/widgets";
 import { Container } from "@/components/shared/Container";
@@ -19,14 +17,11 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${montserrat.variable} relative`}>
-        <NextThemesProvider attribute="class" defaultTheme="light">
-          <RouteThemeManager />
-          <Container className="absolute top-4 left-0 right-0 z-50 px-6">
-            <Header />
-          </Container>
+        <Container className="absolute top-4 left-0 right-0 z-50 px-6">
+          <Header />
+        </Container>
 
-          {children}
-        </NextThemesProvider>
+        {children}
       </body>
     </html>
   );
