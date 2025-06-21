@@ -24,7 +24,7 @@ export const ContactMap = () => {
         {/* Левая часть: заголовок + контакты */}
         <div className="w-4/5 lg:w-1/2 flex flex-col gap-6">
           <h2 className="text-xl sm:text-2xl md:text-3xl text-black font-bold font-montserrat leading-snug sm:leading-tight text-center lg:text-left">
-            <span className="text-primary">Контактная</span> информация:
+            <span className="text-primaryCustom">Контактная</span> информация:
           </h2>
 
           <div className="space-y-3 w-full">
