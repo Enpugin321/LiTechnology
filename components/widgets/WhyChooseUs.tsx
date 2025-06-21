@@ -8,8 +8,11 @@ interface FeatureCardProps {
 
 const FeatureCard: React.FC<FeatureCardProps> = ({ title, image }) => {
   return (
-    <div className="bg-white aspect-square rounded-lg border border-[#868686] p-3 sm:p-4 lg:p-6 flex flex-col justify-center items-center h-full">
-      <div className="w-3/5 aspect-square relative flex-shrink-0">
+    <div
+      className="bg-white aspect-square rounded-lg border border-[#868686] p-3 sm:p-4 lg:p-6 
+                flex flex-col items-center h-full"
+    >
+      <div className="flex-grow flex items-center justify-center w-3/5 aspect-square relative">
         <Image
           src={image || "/placeholder.svg"}
           alt=""
@@ -17,11 +20,14 @@ const FeatureCard: React.FC<FeatureCardProps> = ({ title, image }) => {
           className="object-contain"
         />
       </div>
-      <div className="flex-1 flex items-end">
-        <p className="text-center text-[10px] sm:text-sm lg:text-base font-montserrat font-normal text-gray-700 w-full leading-tight h-[3rem] sm:h-[3.5rem] flex items-center justify-center line-clamp-3 sm:line-clamp-2">
-          {title}
-        </p>
-      </div>
+
+      <p
+        className="mt-2 text-center text-[10px] sm:text-sm lg:text-base 
+                font-montserrat font-normal text-gray-700 w-full leading-tight 
+                h-[3rem] sm:h-[3.5rem] flex items-center justify-center line-clamp-3 sm:line-clamp-2"
+      >
+        {title}
+      </p>
     </div>
   );
 };
