@@ -380,11 +380,11 @@ export const products = {
       price: "$35,000",
       previewImage: "/images/products/vacuums/Scrubber50/scrubber50Preview.png",
       images: [
-        "/images/products/vacuums/Scrubber50/scrubber50-1.jpg",
-        "/images/products/vacuums/Scrubber50/scrubber50-2.jpg",
-        "/images/products/vacuums/Scrubber50/scrubber50-3.jpg",
-        "/images/products/vacuums/Scrubber50/scrubber50-4.jpg",
-        "/images/products/vacuums/Scrubber50/scrubber50-5.jpg",
+        "/images/products/vacuums/Scrubber50/Scrubber50-1.jpg",
+        "/images/products/vacuums/Scrubber50/Scrubber50-2.jpg",
+        "/images/products/vacuums/Scrubber50/Scrubber50-3.jpg",
+        "/images/products/vacuums/Scrubber50/Scrubber50-4.jpg",
+        "/images/products/vacuums/Scrubber50/Scrubber50-5.jpg",
       ],
       description:
         "Scrubber 50 — многофункциональный уборочный робот с возможностью выбора щёток. Подходит для различных типов полов.",
@@ -481,11 +481,11 @@ export const products = {
       price: "$35,000",
       previewImage: "/images/products/vacuums/Vacuum40/vacuum40Preview.png",
       images: [
-        "/images/products/vacuums/Vacuum40/vacuum40-1.jpeg",
-        "/images/products/vacuums/Vacuum40/vacuum40-2.jpeg",
-        "/images/products/vacuums/Vacuum40/vacuum40-3.jpeg",
-        "/images/products/vacuums/Vacuum40/vacuum40-4.jpeg",
-        "/images/products/vacuums/Vacuum40/vacuum40-5.jpeg",
+        "/images/products/vacuums/Vacuum40/Vacuum40-1.jpeg",
+        "/images/products/vacuums/Vacuum40/Vacuum40-2.jpeg",
+        "/images/products/vacuums/Vacuum40/Vacuum40-3.jpeg",
+        "/images/products/vacuums/Vacuum40/Vacuum40-4.jpeg",
+        "/images/products/vacuums/Vacuum40/Vacuum40-5.jpeg",
       ],
       description:
         "Vacuum 40 — автономный пылесос для коммерческих помещений. Имеет вместительный мешок для пыли и высокую эффективность.",
