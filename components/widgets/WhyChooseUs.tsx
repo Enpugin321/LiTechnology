@@ -51,7 +51,7 @@ export const WhyChooseUs: React.FC = () => {
   return (
     <section className="bg-white mx-auto flex flex-col gap-6">
       <h2 className="text-xl sm:text-2xl md:text-3xl text-black font-bold font-montserrat leading-snug sm:leading-tight text-center">
-        Почему выбирают <span className="text-primary">нас</span>
+        Почему выбирают <span className="text-primaryCustom">нас</span>
       </h2>
 
       <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
