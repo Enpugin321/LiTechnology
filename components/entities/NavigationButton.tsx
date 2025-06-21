@@ -1,7 +1,7 @@
 "use client";
 
 import type React from "react";
-import { cn } from "@/components/shared/lib/utils";
+import { cn } from "@/lib/utils";
 import Image from "next/image";
 
 interface Props {

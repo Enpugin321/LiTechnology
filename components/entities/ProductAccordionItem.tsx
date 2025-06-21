@@ -2,7 +2,7 @@
 
 import { useRef, useEffect, useState } from "react";
 import { ChevronRight } from "lucide-react";
-import { cn } from "@/components/shared/lib/utils";
+import { cn } from "@/lib/utils";
 import { MultilineText } from "@/components/shared/ui/MultilineText";
 
 type Props = {

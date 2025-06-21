@@ -3,6 +3,7 @@
 import type React from "react";
 import { useState } from "react";
 import { Button } from "@/components/shared/ui/Button";
+import { OrderButton } from "@/components/entities/OrderButton";
 import { ChevronDown } from "lucide-react";
 
 interface Props {
@@ -34,13 +35,10 @@ export const HeaderActions: React.FC<Props> = ({
   return (
     <div className={`flex items-center  ${className}`}>
       {showContactButton && (
-        <Button
-          variant="default"
-          size="default"
-          className="uppercase font-montserrat px-4 py-1 text-[10px] xl:py-2 xl:text-xs font-semibold bg-primary text-white rounded-3xl"
-        >
-          связаться
-        </Button>
+        <OrderButton
+          title="связаться"
+          className="uppercase font-montserrat px-4 py-1 text-[10px] xl:py-2 xl:text-xs font-semibold bg-primaryCustom text-white rounded-3xl"
+        />
       )}
 
       <div className="relative ml-2">
@@ -68,7 +66,7 @@ export const HeaderActions: React.FC<Props> = ({
                     onClick={() => selectLanguage(language.code)}
                     className={`w-full text-left px-3 py-2 text-[10px] xl:py-2 xl:text-xs font-montserrat font-semibold hover:bg-gray-100 transition-colors ${
                       selectedLanguage === language.code
-                        ? "bg-gray-50 text-primary"
+                        ? "bg-gray-50 text-primaryCustom"
                         : "text-gray-700"
                     }`}
                   >

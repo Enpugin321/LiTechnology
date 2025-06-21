@@ -11,7 +11,7 @@ import {
   Trash2,
   Ruler,
 } from "lucide-react";
-import { cn } from "@/components/shared/lib/utils";
+import { cn } from "@/lib/utils";
 
 interface ProductCardProps {
   id: number;

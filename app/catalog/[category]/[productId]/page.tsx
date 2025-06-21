@@ -3,10 +3,17 @@ import { ProductAccordion } from "@/components/entities/ProductAccordion";
 import { OrderButton } from "@/components/entities/OrderButton";
 import { products } from "@/components/shared/data/products";
 import { notFound } from "next/navigation";
+import Link from "next/link";
+import { ArrowLeft } from "lucide-react";
 
 interface ProductPageProps {
   params: Promise<{ category: "drones" | "vacuums"; productId: number }>;
 }
+
+export const metadata = {
+  title: "LiTechnology - Страница товара",
+  description: "Official site of LiTechnology products",
+};
 
 export default async function DronePage({ params }: ProductPageProps) {
   const { category, productId } = await params;
@@ -19,10 +26,17 @@ export default async function DronePage({ params }: ProductPageProps) {
     notFound();
   }
 
-  console.log(`Найден дрон: ${productData.name}`);
-
   return (
     <div className="min-h-screen h-fit bg-gray-100">
+      <div className="fixed bottom-4 left-4 z-50">
+        <Link
+          href={`/catalog/${category}`}
+          className="inline-flex items-center gap-2 px-4 py-2 bg-white hover:bg-gray-50 text-gray-700 hover:text-gray-900 rounded-lg shadow-md hover:shadow-lg transition-all duration-200 border border-gray-200"
+        >
+          <ArrowLeft className="h-4 w-4" />
+        </Link>
+      </div>
+
       <div className="grid grid-cols-1 lg:grid-cols-[3fr_1fr] w-full">
         {/* Левая колонка - Изображения */}
         <div className="bg-gray-100 w-full pt-32 pb-4">
@@ -60,10 +74,15 @@ export default async function DronePage({ params }: ProductPageProps) {
                 <h3 className="text-xl font-semibold text-gray-900 mb-1">
                   {productData.name}
                 </h3>
-                <p className="text-sm text-gray-600">Дрон</p>
+                <p className="text-sm text-gray-600 mb-5 sm:mb-0">
+                  {category === "drones" ? "Дрон" : "Пылесос"}
+                </p>
               </div>
 
               <OrderButton
+                title="Заказать"
+                className="px-6 py-3 rounded-lg flex items-center gap-2 transition-all duration-200 hover:scale-105"
+                arrow={true}
                 productName={productData.name}
                 productPrice={productData.price}
               />
@@ -75,7 +94,6 @@ export default async function DronePage({ params }: ProductPageProps) {
   );
 }
 
-// Генерируем статические параметры для всех дронов
 export async function generateStaticParams() {
   return products.drones.map((drone) => ({
     id: drone.id.toString(),

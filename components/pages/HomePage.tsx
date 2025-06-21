@@ -12,7 +12,7 @@ interface Props {
 export const HomePage: React.FC<Props> = ({}) => {
   return (
     <div className="min-h-[1000px] flex flex-col bg-white">
-      <Container className="flex flex-col relative items-center justify-center h-[45vh] sm:h-[55vh] md:h-[75vh] w-full bg-primary pt-8">
+      <Container className="flex flex-col relative items-center justify-center h-[45vh] sm:h-[55vh] md:h-[75vh] w-full bg-primaryCustom pt-8">
         <div className="flex flex-col w-full items-center gap-3 transform -translate-y-1/3">
           <Image
             src={BigLogo}

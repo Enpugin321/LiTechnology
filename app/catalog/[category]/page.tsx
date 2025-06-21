@@ -8,6 +8,11 @@ interface Props {
   params: Promise<{ category: "drones" | "vacuums" }>;
 }
 
+export const metadata = {
+  title: "LiTechnology - Каталог",
+  description: "Official site of LiTechnology products",
+};
+
 export default async function CatalogPage({ params }: Props) {
   const { category } = await params;
 

@@ -8,7 +8,7 @@ import Map from "@/components/features/Map";
 export const ContactMap = () => {
   const handleWhatsappClick = () => {
     if (typeof window !== "undefined") {
-      window.open("https://wa.me/77770000000", "_blank");
+      window.open("https://wa.me/77001307888", "_blank");
     }
   };
 

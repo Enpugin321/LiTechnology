@@ -1,15 +1,16 @@
 "use client";
 
 import type React from "react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { DropdownNavigation, HeaderActions } from "@/components/entities";
 import { useRouter, usePathname } from "next/navigation";
-import { navigateToSection } from "@/components/shared/lib/utils";
+import { navigateToSection } from "@/lib/utils";
 import BigLogo from "@/public/images/BigLogo.svg";
 import Link from "next/link";
-import { cn } from "../shared/lib/utils";
+import { cn } from "../../lib/utils";
 import { Menu, X } from "lucide-react";
+import { ContactModal } from "@/components/shared/ContactModal";
 
 interface Props {
   className?: string;
@@ -17,6 +18,8 @@ interface Props {
 
 export const Header: React.FC<Props> = ({ className }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isContactOpen, setIsContactOpen] = useState(false);
+  const dialogRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
   const pathname = usePathname();
 
@@ -29,46 +32,61 @@ export const Header: React.FC<Props> = ({ className }) => {
     } else if (pathname.startsWith("/catalog")) {
       html.classList.remove("light");
       html.classList.add("dark");
-    } else {
-      html.classList.remove("dark");
-      html.classList.add("light");
     }
   }, [pathname]);
 
-  useEffect(() => {
-    const preventScroll = (e: TouchEvent) => {
-      e.preventDefault();
-    };
+  const preventScroll = (e: TouchEvent) => {
+    // Проверяем, происходит ли событие внутри модального окна
+    if (dialogRef.current && dialogRef.current.contains(e.target as Node)) {
+      // Если событие внутри модального окна, разрешаем скролл
+      return;
+    }
+    // Если событие вне модального окна, блокируем скролл
+    e.preventDefault();
+  };
 
+  useEffect(() => {
     if (isMobileMenuOpen) {
+      // Сохраняем текущую позицию скролла
+      const scrollY = window.scrollY;
+
       // Блокируем скролл для body
       document.body.style.overflow = "hidden";
       document.body.style.position = "fixed";
-      document.body.style.top = "0";
+      document.body.style.top = `-${scrollY}px`;
       document.body.style.left = "0";
       document.body.style.right = "0";
+      document.body.style.width = "100%";
 
-      // Предотвращаем touch события для мобильных устройств
+      // Предотвращаем touch события только вне модального окна
       document.addEventListener("touchmove", preventScroll, { passive: false });
     } else {
       // Восстанавливаем скролл
+      const scrollY = document.body.style.top;
       document.body.style.overflow = "";
       document.body.style.position = "";
       document.body.style.top = "";
       document.body.style.left = "";
       document.body.style.right = "";
+      document.body.style.width = "";
+
+      // Восстанавливаем позицию скролла
+      if (scrollY) {
+        window.scrollTo(0, Number.parseInt(scrollY || "0") * -1);
+      }
 
       // Удаляем обработчик touch событий
       document.removeEventListener("touchmove", preventScroll);
     }
 
-    // Очистка при размонтировании компонента
+    // Cleanup функция для случая размонтирования компонента
     return () => {
       document.body.style.overflow = "";
       document.body.style.position = "";
       document.body.style.top = "";
       document.body.style.left = "";
       document.body.style.right = "";
+      document.body.style.width = "";
       document.removeEventListener("touchmove", preventScroll);
     };
   }, [isMobileMenuOpen]);
@@ -86,6 +104,13 @@ export const Header: React.FC<Props> = ({ className }) => {
 
     setTimeout(() => {
       navigateToSection(sectionId, router, pathname);
+    }, 100);
+  };
+
+  const openContactForm = () => {
+    setIsMobileMenuOpen(false);
+    setTimeout(() => {
+      setIsContactOpen(true);
     }, 100);
   };
 
@@ -142,8 +167,11 @@ export const Header: React.FC<Props> = ({ className }) => {
 
       {/* Mobile Menu Overlay */}
       {isMobileMenuOpen && (
-        <div className="fixed inset-0 z-50 bg-white dark:bg-black md:hidden">
-          <div className="flex flex-col h-full">
+        <div
+          ref={dialogRef}
+          className="fixed inset-0 z-50 bg-white dark:bg-black md:hidden"
+        >
+          <div className="flex flex-col h-full overflow-hidden">
             {/* Header мобильного меню */}
             <div className="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700">
               <Image
@@ -162,7 +190,7 @@ export const Header: React.FC<Props> = ({ className }) => {
             </div>
 
             {/* Меню навигации */}
-            <nav className="flex-1 px-6 py-8">
+            <nav className="flex-1 overflow-y-auto px-6 py-8">
               <ul className="space-y-8">
                 <li>
                   <Link
@@ -201,7 +229,7 @@ export const Header: React.FC<Props> = ({ className }) => {
                 </li>
                 <li>
                   <button
-                    className="block  w-full text-left text-lg font-medium text-gray-900 dark:text-white py-2 border-b border-gray-200 dark:border-gray-700"
+                    className="block w-full text-left text-lg font-medium text-gray-900 dark:text-white py-2 border-b border-gray-200 dark:border-gray-700"
                     onClick={() => handleScrollToSection("advantages")}
                   >
                     Преимущества
@@ -209,10 +237,18 @@ export const Header: React.FC<Props> = ({ className }) => {
                 </li>
                 <li>
                   <button
-                    className="block  w-full text-left text-lg font-medium text-gray-900 dark:text-white py-2 border-b border-gray-200 dark:border-gray-700"
+                    className="block w-full text-left text-lg font-medium text-gray-900 dark:text-white py-2 border-b border-gray-200 dark:border-gray-700"
                     onClick={() => handleScrollToSection("contacts")}
                   >
                     Контакты
+                  </button>
+                </li>
+                <li>
+                  <button
+                    className="block w-full text-left text-lg font-medium text-gray-900 dark:text-white py-2 border-b border-gray-200 dark:border-gray-700"
+                    onClick={openContactForm}
+                  >
+                    Связаться
                   </button>
                 </li>
               </ul>
@@ -220,6 +256,9 @@ export const Header: React.FC<Props> = ({ className }) => {
           </div>
         </div>
       )}
+
+      {/* Contact Form Popup */}
+      <ContactModal isOpen={isContactOpen} onOpenChange={setIsContactOpen} />
     </>
   );
 };

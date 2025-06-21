@@ -4,8 +4,8 @@ import { useState, useRef } from "react";
 import { ChevronDown } from "lucide-react";
 import { useClickAway } from "react-use";
 import { useRouter, usePathname } from "next/navigation";
-import { cn } from "@/components/shared/lib/utils";
-import { navigateToSection } from "@/components/shared/lib/utils";
+import { cn } from "@/lib/utils";
+import { navigateToSection } from "@/lib/utils";
 import Link from "next/link";
 
 export function DropdownNavigation() {
@@ -43,7 +43,7 @@ export function DropdownNavigation() {
               <span>Каталог</span>
               <ChevronDown
                 className={cn(
-                  "w-4 h-4 transition-transform",
+                  "w-4 h-4 transition-transform mt-0.5",
                   openDropdown === "catalog" && "rotate-180"
                 )}
               />

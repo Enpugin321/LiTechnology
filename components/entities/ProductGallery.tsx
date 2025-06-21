@@ -5,7 +5,7 @@ import { useState } from "react";
 import Image from "next/image";
 import { MoveLeft, MoveRight } from "lucide-react";
 import { Button } from "@/components/shared/ui/Button";
-import { cn } from "@/components/shared/lib/utils";
+import { cn } from "@/lib/utils";
 
 interface ProductGalleryProps {
   images: string[];
