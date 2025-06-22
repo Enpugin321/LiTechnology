@@ -23,6 +23,8 @@ export const Header: React.FC<Props> = ({ className }) => {
   const router = useRouter();
   const pathname = usePathname();
 
+  console.log(router, pathname);
+
   useEffect(() => {
     const html = document.documentElement;
 

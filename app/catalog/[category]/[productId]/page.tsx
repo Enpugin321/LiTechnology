@@ -1,6 +1,6 @@
 import { ProductSlider } from "@/components/features/ProductSlider";
 import { ProductAccordion } from "@/components/entities/ProductAccordion";
-import { OrderButton } from "@/components/entities/OrderButton";
+import { OrderButton } from "@/components/features/OrderButton";
 import { products } from "@/components/shared/data/products";
 import { notFound } from "next/navigation";
 import Link from "next/link";

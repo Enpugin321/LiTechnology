@@ -22,7 +22,7 @@ export const ContactMap = () => {
     <section className="py-12 bg-white">
       <div className="flex flex-col lg:flex-row justify-between items-center lg:items-start gap-8 lg:gap-16">
         {/* Левая часть: заголовок + контакты */}
-        <div className="w-4/5 lg:w-1/2 flex flex-col gap-6">
+        <div className="w-fit flex flex-col gap-6">
           <h2 className="text-xl sm:text-2xl md:text-3xl text-black font-bold font-montserrat leading-snug sm:leading-tight text-center lg:text-left">
             <span className="text-primaryCustom">Контактная</span> информация:
           </h2>

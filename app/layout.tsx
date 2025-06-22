@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { montserrat } from "./ui/fonts";
 import "./globals.css";
-import { Header } from "@/components/widgets";
+import { Header, Footer } from "@/components/widgets";
 import { Container } from "@/components/shared/Container";
 
 export const metadata: Metadata = {
@@ -20,8 +20,10 @@ export default function RootLayout({
         <Container className="absolute top-4 left-0 right-0 z-50 px-6">
           <Header />
         </Container>
-
-        {children}
+        <main>{children}</main>
+        <Container className="bg-gray-100">
+          <Footer />
+        </Container>
       </body>
     </html>
   );

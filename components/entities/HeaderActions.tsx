@@ -3,7 +3,7 @@
 import type React from "react";
 import { useState } from "react";
 import { Button } from "@/components/shared/ui/Button";
-import { OrderButton } from "@/components/entities/OrderButton";
+import { OrderButton } from "@/components/features/OrderButton";
 import { ChevronDown } from "lucide-react";
 
 interface Props {
