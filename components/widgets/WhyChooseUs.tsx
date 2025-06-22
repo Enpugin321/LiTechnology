@@ -16,7 +16,8 @@ const FeatureCard: React.FC<FeatureCardProps> = ({ title, image }) => {
         <Image
           src={image || "/placeholder.svg"}
           alt=""
-          fill
+          width={300} // или другой разумный размер
+          height={300}
           className="object-contain"
         />
       </div>
