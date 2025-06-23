@@ -1,10 +1,15 @@
 import type React from "react";
 import Image from "next/image";
+import { TFunction } from "@/app/[locale]/page";
 
 interface FeatureCardProps {
   title: string;
   image: string;
 }
+
+type Props = {
+  t: TFunction;
+};
 
 const FeatureCard: React.FC<FeatureCardProps> = ({ title, image }) => {
   return (
@@ -33,18 +38,18 @@ const FeatureCard: React.FC<FeatureCardProps> = ({ title, image }) => {
   );
 };
 
-export const WhyChooseUs: React.FC = () => {
+export const WhyChooseUs: React.FC<Props> = ({ t }) => {
   const features = [
     {
-      title: "Официальное дилерство XAG и Caulisium",
-      image: "/images/partners.png",
+      title: t("why.list.0"),
+      image: "/images/partners.jpg",
     },
     {
-      title: "Собственные склад, офис и сервисный центр в Алматы",
+      title: t("why.list.1"),
       image: "/images/warehouse.png",
     },
     {
-      title: "Быстрая доставка по всему Казахстану",
+      title: t("why.list.2"),
       image: "/images/delivery.png",
     },
   ];
@@ -52,7 +57,11 @@ export const WhyChooseUs: React.FC = () => {
   return (
     <section className="bg-white mx-auto flex flex-col gap-6">
       <h2 className="text-xl sm:text-2xl md:text-3xl text-black font-bold font-montserrat leading-snug sm:leading-tight text-center">
-        Почему выбирают <span className="text-primaryCustom">нас</span>
+        {t.rich("why.title", {
+          span: (chunks) => (
+            <span className="text-primaryCustom">{chunks}</span>
+          ),
+        })}
       </h2>
 
       <div className="grid grid-cols-2 md:grid-cols-3 gap-6">

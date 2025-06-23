@@ -11,6 +11,7 @@ import Link from "next/link";
 import { cn } from "../../lib/utils";
 import { Menu, X } from "lucide-react";
 import { ContactModal } from "@/components/shared/ContactModal";
+import { useTranslations } from "next-intl";
 
 interface Props {
   className?: string;
@@ -22,16 +23,17 @@ export const Header: React.FC<Props> = ({ className }) => {
   const dialogRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
   const pathname = usePathname();
+  const t = useTranslations("nav");
 
   console.log(router, pathname);
 
   useEffect(() => {
     const html = document.documentElement;
 
-    if (pathname === "/") {
+    if (pathname === "/ru" || pathname === "/kz") {
       html.classList.remove("dark");
       html.classList.add("light");
-    } else if (pathname.startsWith("/catalog")) {
+    } else if (pathname.includes("/drones") || pathname.includes("/vacuums")) {
       html.classList.remove("light");
       html.classList.add("dark");
     }
@@ -137,9 +139,9 @@ export const Header: React.FC<Props> = ({ className }) => {
             />
           </Link>
 
-          <DropdownNavigation />
+          <DropdownNavigation t={t} />
 
-          <HeaderActions />
+          <HeaderActions t={t} />
         </div>
 
         {/* Mobile версия */}
@@ -162,7 +164,7 @@ export const Header: React.FC<Props> = ({ className }) => {
 
           {/* Кнопка смены языка */}
           <div className="w-1/3 flex items-end justify-end">
-            <HeaderActions showContactButton={false} />
+            <HeaderActions t={t} showContactButton={false} />
           </div>
         </div>
       </header>
@@ -200,7 +202,7 @@ export const Header: React.FC<Props> = ({ className }) => {
                     className="block text-lg font-medium text-gray-900 dark:text-white py-2 border-b border-gray-200 dark:border-gray-700"
                     onClick={closeMobileMenu}
                   >
-                    Главная
+                    {t("home")}
                   </Link>
                 </li>
                 <li>
@@ -209,7 +211,7 @@ export const Header: React.FC<Props> = ({ className }) => {
                     className="block text-lg font-medium text-gray-900 dark:text-white py-2 border-b border-gray-200 dark:border-gray-700"
                     onClick={closeMobileMenu}
                   >
-                    Дроны
+                    {t("drones")}
                   </Link>
                 </li>
                 <li>
@@ -218,7 +220,7 @@ export const Header: React.FC<Props> = ({ className }) => {
                     className="block text-lg font-medium text-gray-900 dark:text-white py-2 border-b border-gray-200 dark:border-gray-700"
                     onClick={closeMobileMenu}
                   >
-                    Пылесосы
+                    {t("vacuums")}
                   </Link>
                 </li>
                 <li>
@@ -226,7 +228,7 @@ export const Header: React.FC<Props> = ({ className }) => {
                     className="block w-full text-left text-lg font-medium text-gray-900 dark:text-white py-2 border-b border-gray-200 dark:border-gray-700"
                     onClick={() => handleScrollToSection("about-us")}
                   >
-                    О нас
+                    {t("about")}
                   </button>
                 </li>
                 <li>
@@ -234,7 +236,7 @@ export const Header: React.FC<Props> = ({ className }) => {
                     className="block w-full text-left text-lg font-medium text-gray-900 dark:text-white py-2 border-b border-gray-200 dark:border-gray-700"
                     onClick={() => handleScrollToSection("advantages")}
                   >
-                    Преимущества
+                    {t("advantages")}
                   </button>
                 </li>
                 <li>
@@ -242,7 +244,7 @@ export const Header: React.FC<Props> = ({ className }) => {
                     className="block w-full text-left text-lg font-medium text-gray-900 dark:text-white py-2 border-b border-gray-200 dark:border-gray-700"
                     onClick={() => handleScrollToSection("contacts")}
                   >
-                    Контакты
+                    {t("contacts")}
                   </button>
                 </li>
                 <li>
@@ -250,7 +252,7 @@ export const Header: React.FC<Props> = ({ className }) => {
                     className="block w-full text-left text-lg font-medium text-gray-900 dark:text-white py-2 border-b border-gray-200 dark:border-gray-700"
                     onClick={openContactForm}
                   >
-                    Связаться
+                    {t("reachUs")}
                   </button>
                 </li>
               </ul>

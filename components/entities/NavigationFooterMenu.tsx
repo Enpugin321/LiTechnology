@@ -4,8 +4,13 @@ import React from "react";
 import { navigateToSection } from "@/lib/utils";
 import { useRouter, usePathname } from "next/navigation";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 
-export const NavigationFooterMenu: React.FC = () => {
+export const NavigationFooterMenu: React.FC<{ locale: "ru" | "kz" }> = ({
+  locale,
+}) => {
+  const t = useTranslations("nav");
+
   const handleScrollToSection = (sectionId: string) => {
     navigateToSection(sectionId, router, pathname);
   };
@@ -14,37 +19,39 @@ export const NavigationFooterMenu: React.FC = () => {
 
   return (
     <div>
-      <h3 className="text-lg font-semibold text-black mb-4">НАВИГАЦИЯ</h3>
+      <h3 className="text-lg font-semibold text-black mb-4">
+        {t("navigation")}
+      </h3>
       <nav className="space-y-3">
         <Link
-          href="/catalog/vacuums"
+          href={`/${locale}/vacuums`}
           className="block text-gray-700 hover:text-black transition-colors"
         >
-          Пылесосы
+          {t("vacuums")}
         </Link>
         <Link
-          href="/catalog/drones"
+          href={`/${locale}/drones`}
           className="block text-gray-700 hover:text-black transition-colors"
         >
-          Дроны
+          {t("drones")}
         </Link>
         <button
           onClick={() => handleScrollToSection("about-us")}
           className="block text-gray-700 hover:text-black transition-colors"
         >
-          О нас
+          {t("about")}
         </button>
         <button
           onClick={() => handleScrollToSection("advantages")}
           className="block text-gray-700 hover:text-black transition-colors"
         >
-          Почему мы?
+          {t("advantages")}
         </button>
         <button
           onClick={() => handleScrollToSection("contacts")}
           className="block text-gray-700 hover:text-black transition-colors"
         >
-          Контактная информация
+          {t("contacts")}
         </button>
       </nav>
     </div>

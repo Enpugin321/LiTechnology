@@ -1,16 +1,26 @@
+"use client";
+
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+
+import { usePathname } from "next/navigation";
+import { useTranslations } from "next-intl";
 
 interface Props {
   className?: string;
 }
 
 export const CatalogCards: React.FC<Props> = () => {
+  const t = useTranslations("HomePage");
+  const pathname = usePathname();
+  const locale = pathname.split("/")[1];
+  const newHref = `/${locale}/`;
+
   return (
     <div className="flex flex-row justify-center gap-6 md:gap-12">
       <Link
-        href="/catalog/drones"
+        href={newHref + "drones"}
         className="group rounded-lg bg-[#250607] hover:bg-[#472626] w-full md:w-[35%] aspect-[7/5] flex flex-col p-2 sm:p-4 cursor-pointer transition-all duration-500 ease-in-out overflow-hidden relative"
       >
         {/* Заголовок и подзаголовок */}
@@ -20,7 +30,7 @@ export const CatalogCards: React.FC<Props> = () => {
             className="
         font-bold text-[2.5vw] md:text-[1.5vw] text-white absolute sm:top-2 sm:left-2 lg:top-4 lg:left-4 font-sans transition-transform duration-500 ease-in-out z-20 "
           >
-            Агродроны XAG
+            {t("drones.title")}
           </h3>
 
           {/* Подзаголовок, absolute, выезжает из-под заголовка */}
@@ -29,7 +39,9 @@ export const CatalogCards: React.FC<Props> = () => {
               className="
           text-[2vw] md:text-[1vw] text-gray-300 transform -translate-y-full group-hover:translate-y-2/3 md:group-hover:translate-y-1/2 lg:group-hover:translate-y-full transition-transform duration-500 ease-in-out"
             >
-              Автономная сила для <br /> урожая будущего
+              {t.rich("drones.subtitle", {
+                br: () => <br />,
+              })}
             </p>
           </div>
         </div>
@@ -47,7 +59,7 @@ export const CatalogCards: React.FC<Props> = () => {
       </Link>
 
       <Link
-        href="/catalog/vacuums"
+        href={newHref + "vacuums"}
         className="group rounded-lg bg-[#060B25] hover:bg-[#262B47] w-full md:w-[35%] aspect-[7/5] flex flex-col pt-2 sm:pt-4 px-2 sm:px-4 cursor-pointer transition-all duration-500 ease-in-out overflow-hidden relative"
       >
         {/* Заголовок и подзаголовок */}
@@ -57,7 +69,7 @@ export const CatalogCards: React.FC<Props> = () => {
             className="
         font-bold text-[2.5vw] md:text-[1.5vw] text-white absolute sm:top-2 sm:left-2 lg:top-4 lg:left-4 font-sans transition-transform duration-500 ease-in-out z-20 "
           >
-            Роботы-уборщики Gausium
+            {t("vacuums.title")}
           </h3>
 
           {/* Подзаголовок, absolute, выезжает из-под заголовка */}
@@ -66,8 +78,10 @@ export const CatalogCards: React.FC<Props> = () => {
               className="
           text-[2vw] md:text-[1vw] text-gray-300 transform -translate-y-full group-hover:translate-y-2/3 md:group-hover:translate-y-1/2 lg:group-hover:translate-y-full transition-transform duration-500 ease-in-out"
             >
-              Чистота без усилий — <br /> интеллект в каждом{" "}
-              <br className="md:hidden" /> движении
+              {t.rich("vacuums.subtitle", {
+                br1: () => <br />,
+                br2: () => <br className="md:hidden" />,
+              })}
             </p>
           </div>
         </div>

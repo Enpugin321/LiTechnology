@@ -3,8 +3,15 @@ import Image from "next/image";
 import { MessageCircle, Send } from "lucide-react";
 import BigLogo from "@/public/images/BigLogo.svg";
 import { NavigationFooterMenu } from "@/components/entities/NavigationFooterMenu";
+import { getTranslations } from "next-intl/server";
 
-export const Footer = () => {
+interface ProductPageProps {
+  locale: "ru" | "kz";
+}
+
+export const Footer = async ({ locale }: ProductPageProps) => {
+  const t = await getTranslations("footer");
+
   return (
     <footer className="py-12 w-full">
       <div className="">
@@ -23,13 +30,13 @@ export const Footer = () => {
             </Link>
 
             {/* Навигация */}
-            <NavigationFooterMenu />
+            <NavigationFooterMenu locale={locale} />
           </div>
 
           {/* Правая колонка - Социальные сети */}
           <div>
             <h3 className="text-lg font-semibold text-black mb-4">
-              НАШИ СОЦИАЛЬНЫЕ СЕТИ
+              {t("social")}
             </h3>
             <div className="flex space-x-4">
               {/* WhatsApp */}
@@ -58,21 +65,19 @@ export const Footer = () => {
         {/* Нижняя часть с копирайтом */}
         <div className="mt-12 pt-8 border-t border-gray-300">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <p className="text-gray-600 text-sm">
-              © 2024 LI TECHNOLOGY. Все права защищены.
-            </p>
+            <p className="text-gray-600 text-sm">{t("copyright")}</p>
             <div className="flex space-x-6 text-sm">
               <Link
                 href="/privacy"
                 className="text-gray-600 hover:text-black transition-colors"
               >
-                Политика конфиденциальности
+                {t("privacy")}
               </Link>
               <Link
                 href="/terms"
                 className="text-gray-600 hover:text-black transition-colors"
               >
-                Условия использования
+                {t("terms")}
               </Link>
             </div>
           </div>

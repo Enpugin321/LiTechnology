@@ -101,14 +101,14 @@ export const ContactModal: React.FC<ContactModalProps> = ({
 
       if (productName && productPrice) {
         text = `Новый заказ:
-Товар: ${productName}
-Цена: ${productPrice}
-Имя: ${formData.name}
-Телефон: ${formData.phone}`;
+        Товар: ${productName}
+        Цена: ${productPrice}
+        Имя: ${formData.name}
+        Телефон: ${formData.phone}`;
       } else {
         text = `Новая заявка на связь:
-Имя: ${formData.name}
-Телефон: ${formData.phone}`;
+        Имя: ${formData.name}
+        Телефон: ${formData.phone}`;
       }
 
       const res = await fetch("https://vencera.tech/letech/v1/notify", {
@@ -134,7 +134,10 @@ export const ContactModal: React.FC<ContactModalProps> = ({
   };
 
   const handleInputChange = (field: string, value: string) => {
-    setFormData((prev) => ({ ...prev, [field]: value }));
+    const limit =
+      field === "phone" && value[0] === "+" ? 12 : field === "phone" ? 11 : 20;
+
+    setFormData((prev) => ({ ...prev, [field]: value.slice(0, limit) }));
   };
 
   return (
@@ -159,7 +162,6 @@ export const ContactModal: React.FC<ContactModalProps> = ({
                 </p>
               </div>
 
-              {/* Product Info - показываем только если есть данные о товаре */}
               {productName && productPrice && (
                 <div className="bg-white dark:bg-slate-800 rounded-lg p-4 border">
                   <h3 className="font-semibold text-sm text-muted-foreground mb-1">

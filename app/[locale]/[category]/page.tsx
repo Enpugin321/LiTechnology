@@ -3,9 +3,10 @@ import { notFound } from "next/navigation";
 import { Container } from "@/components/shared";
 import { CatalogContent } from "./catalog-content";
 import { CatalogSkeleton } from "./catalog-skeleton";
+import { getTranslations } from "next-intl/server";
 
 interface Props {
-  params: Promise<{ category: "drones" | "vacuums" }>;
+  params: Promise<{ locale: "ru" | "kz"; category: "drones" | "vacuums" }>;
 }
 
 export const metadata = {
@@ -14,25 +15,16 @@ export const metadata = {
 };
 
 export default async function CatalogPage({ params }: Props) {
-  const { category } = await params;
+  const { locale, category } = await params;
+  const t = await getTranslations("catalogPage");
 
   // Проверяем валидность категории
   if (!["drones", "vacuums"].includes(category)) {
     return notFound();
   }
 
-  const headings = {
-    drones: {
-      title: "Каталог дронов",
-      description: "Мощные промышленные агродроны для посева и опрыскивания",
-    },
-    vacuums: {
-      title: "Каталог пылесосов",
-      description: "Роботы-пылесосы для дома и офиса",
-    },
-  } as const;
-
-  const { title, description } = headings[category];
+  const title = t(`${category}.title`);
+  const description = t(`${category}.description`);
 
   return (
     <div className="min-h-screen bg-white">
@@ -46,7 +38,7 @@ export default async function CatalogPage({ params }: Props) {
 
           {/* Динамический контент с Suspense boundary */}
           <Suspense fallback={<CatalogSkeleton />}>
-            <CatalogContent category={category} />
+            <CatalogContent locale={locale} category={category} />
           </Suspense>
         </Container>
       </main>

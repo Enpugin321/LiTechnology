@@ -3,10 +3,14 @@ import { products } from "@/components/shared/data/products";
 // import type { Drone } from "@/components/shared/data/types";
 
 interface CatalogContentProps {
+  locale: "ru" | "kz";
   category: "drones" | "vacuums";
 }
 
-export async function CatalogContent({ category }: CatalogContentProps) {
+export async function CatalogContent({
+  locale,
+  category,
+}: CatalogContentProps) {
   const items = products[category];
 
   if (!items) {
@@ -19,6 +23,7 @@ export async function CatalogContent({ category }: CatalogContentProps) {
         <ProductCard
           key={item.id}
           id={item.id}
+          locale={locale}
           category={category}
           name={item.name}
           price={item.price}

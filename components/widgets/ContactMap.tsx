@@ -3,9 +3,12 @@
 import React from "react";
 import { MapPin, Phone, MessageCircle, Send } from "lucide-react";
 import Map from "@/components/features/Map";
+import { useTranslations } from "next-intl";
 
 // Компонент с инициализацией карты
 export const ContactMap = () => {
+  const t = useTranslations("HomePage.contact");
+
   const handleWhatsappClick = () => {
     if (typeof window !== "undefined") {
       window.open("https://wa.me/77001307888", "_blank");
@@ -24,18 +27,22 @@ export const ContactMap = () => {
         {/* Левая часть: заголовок + контакты */}
         <div className="w-fit flex flex-col gap-6">
           <h2 className="text-xl sm:text-2xl md:text-3xl text-black font-bold font-montserrat leading-snug sm:leading-tight text-center lg:text-left">
-            <span className="text-primaryCustom">Контактная</span> информация:
+            {t.rich("title", {
+              span: (chunks) => (
+                <span className="text-primaryCustom">{chunks}</span>
+              ),
+            })}
           </h2>
 
           <div className="space-y-3 w-full">
             <button className="bg-[#0E3247] w-full text-white text-sm sm:text-base md:text-lg py-3 sm:py-4 px-3 sm:px-4 rounded flex items-center gap-2 sm:gap-3 hover:bg-[#0e3151]/90 transition-colors">
               <MapPin className="w-5 h-5 shrink-0" />
-              <span>г. Алматы, ул. Ауэзова, 50</span>
+              <span>{t("address")}</span>
             </button>
 
             <button className="bg-[#0E3247] w-full text-white text-sm sm:text-base md:text-lg py-3 sm:py-4 px-3 sm:px-4 rounded flex items-center gap-2 sm:gap-3 hover:bg-[#0e3151]/90 transition-colors">
               <Phone className="w-5 h-5 shrink-0" />
-              <span>8-700-130-7888</span>
+              <span>{t("phone")}</span>
             </button>
 
             <button
@@ -43,7 +50,7 @@ export const ContactMap = () => {
               className="bg-[#0E3247] w-full text-white text-sm sm:text-base md:text-lg py-3 sm:py-4 px-3 sm:px-4 rounded flex items-center gap-2 sm:gap-3 hover:bg-[#0e3151]/90 transition-colors"
             >
               <MessageCircle className="w-5 h-5 shrink-0" />
-              <span>Написать в Whatsapp</span>
+              <span>{t("whatsapp")}</span>
             </button>
 
             <button
@@ -51,7 +58,7 @@ export const ContactMap = () => {
               className="bg-[#0E3247] w-full text-white text-sm sm:text-base md:text-lg py-3 sm:py-4 px-3 sm:px-4 rounded flex items-center gap-2 sm:gap-3 hover:bg-[#0e3151]/90 transition-colors"
             >
               <Send className="w-5 h-5 shrink-0" />
-              <span>Написать в Telegram</span>
+              <span>{t("telegram")}</span>
             </button>
           </div>
         </div>

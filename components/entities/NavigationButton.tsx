@@ -38,7 +38,6 @@ export const NavigationButton: React.FC<Props> = ({
       >
         {title}
       </h3>
-      {/* Убрали h-full и relative, чтобы блок адаптировался под размер картинки */}
       <div className="w-4/5">
         <Image
           src={imageSrc || "/placeholder.svg"}

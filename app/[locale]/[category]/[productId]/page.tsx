@@ -7,7 +7,11 @@ import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 
 interface ProductPageProps {
-  params: Promise<{ category: "drones" | "vacuums"; productId: number }>;
+  params: Promise<{
+    locale: "ru" | "kz";
+    category: "drones" | "vacuums";
+    productId: number;
+  }>;
 }
 
 export const metadata = {
@@ -16,10 +20,12 @@ export const metadata = {
 };
 
 export default async function DronePage({ params }: ProductPageProps) {
-  const { category, productId } = await params;
+  const { locale, category, productId } = await params;
 
   const droneId = productId;
   const productData = products[category][droneId];
+
+  console.log(productData);
 
   if (!productData) {
     console.log(`Дрон с ID ${droneId} не найден`);
@@ -42,7 +48,7 @@ export default async function DronePage({ params }: ProductPageProps) {
         <div className="bg-gray-100 w-full pt-32 pb-4">
           <div className="mb-12 px-8 sm:px-8 xl:px-32">
             <h1 className="text-5xl font-bold text-gray-900 mb-4">
-              {productData.name}
+              {productData.name[locale]}
             </h1>
             <p className="text-3xl font-semibold text-blue-500">
               {productData.price}
@@ -50,7 +56,10 @@ export default async function DronePage({ params }: ProductPageProps) {
           </div>
 
           <div className="w-full mx-auto flex flex-col justify-center">
-            <ProductSlider images={productData.images} alt={productData.name} />
+            <ProductSlider
+              images={productData.images}
+              alt={productData.name[locale]}
+            />
           </div>
         </div>
 
@@ -58,13 +67,7 @@ export default async function DronePage({ params }: ProductPageProps) {
         <div className="bg-white w-full h-full flex flex-col pt-24 lg:justify-self-end">
           {/* Аккордеон  */}
           <div className="flex-1">
-            <ProductAccordion
-              specs={Object.fromEntries(
-                Object.entries(productData.specs).filter(([, value]) =>
-                  Array.isArray(value)
-                )
-              )}
-            />
+            <ProductAccordion locale={locale} specs={productData.specs} />
           </div>
 
           {/* Блок заказа */}
@@ -72,7 +75,7 @@ export default async function DronePage({ params }: ProductPageProps) {
             <div className="flex items-center justify-between">
               <div>
                 <h3 className="text-xl font-semibold text-gray-900 mb-1">
-                  {productData.name}
+                  {productData.name[locale]}
                 </h3>
                 <p className="text-sm text-gray-600 mb-5 sm:mb-0">
                   {category === "drones" ? "Дрон" : "Пылесос"}
@@ -83,7 +86,7 @@ export default async function DronePage({ params }: ProductPageProps) {
                 title="Заказать"
                 className="px-6 py-3 rounded-lg flex items-center gap-2 transition-all duration-200 hover:scale-105"
                 arrow={true}
-                productName={productData.name}
+                productName={productData.name[locale]}
                 productPrice={productData.price}
               />
             </div>

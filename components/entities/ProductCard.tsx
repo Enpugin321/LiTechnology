@@ -15,30 +15,32 @@ import { cn } from "@/lib/utils";
 
 interface ProductCardProps {
   id: number;
+  locale: "ru" | "kz";
   category: "drones" | "vacuums";
-  name: string;
+  name: { ru: string; kz: string };
   price: string;
   image: string;
-  batteryCapacity?: string; // дроны: время полёта | пылесосы: ёмкость АКБ
-  volume?: string; // дроны: объём бака | пылесосы: объём пылесборника
-  maxDistance?: string; // дроны: высота/дальность | пылесосы: ширина уборки
+  batteryCapacity: { ru: string; kz: string }; // дроны: время полёта | пылесосы: ёмкость АКБ
+  volume: { ru: string; kz: string }; // дроны: объём бака | пылесосы: объём пылесборника
+  maxDistance: { ru: string; kz: string }; // дроны: высота/дальность | пылесосы: ширина уборки
   className?: string;
 }
 
 export const ProductCard: React.FC<ProductCardProps> = ({
   id,
+  locale,
   category,
   name,
   price,
   image,
-  batteryCapacity = "—",
-  volume = "—",
-  maxDistance = "—",
+  batteryCapacity,
+  volume,
+  maxDistance,
   className,
 }) => {
   return (
     <Link
-      href={`/catalog/${category}/${id}`}
+      href={`/${locale}/${category}/${id}`}
       className={cn(
         "bg-white rounded-2xl h-full p-4 sm:p-6 lg:p-8 border border-gray-200 transition-all duration-300 group hover:shadow-lg hover:border-blue-400 flex flex-col",
         className
@@ -47,7 +49,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
       {/* Название и цена */}
       <div className="text-center mb-3 sm:mb-4">
         <h3 className="text-base sm:text-lg lg:text-xl font-semibold mb-2 text-black group-hover:text-blue-500 line-clamp-2">
-          {name}
+          {name[locale]}
         </h3>
         <p className="text-sm lg:text-base text-gray-800 group-hover:text-blue-400">
           {price}
@@ -59,7 +61,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
         <div className="relative w-full max-w-[240px] lg:max-w-[280px] aspect-[4/3]">
           <Image
             src={image || "/placeholder.svg"}
-            alt={name}
+            alt={name[locale]}
             fill
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
             className="object-contain"
@@ -74,17 +76,17 @@ export const ProductCard: React.FC<ProductCardProps> = ({
             {/* Время полёта */}
             <div className="flex flex-col items-center">
               <Battery className={iconClass} />
-              <span className={textClass}>{batteryCapacity}</span>
+              <span className={textClass}>{batteryCapacity[locale]}</span>
             </div>
             {/* Объём бака */}
             <div className="flex flex-col items-center">
               <Droplet className={iconClass} />
-              <span className={textClass}>{volume}</span>
+              <span className={textClass}>{volume[locale]}</span>
             </div>
             {/* Макс. высота/дальность */}
             <div className="flex flex-col items-center">
               <MoveHorizontal className={iconClass} />
-              <span className={textClass}>{maxDistance}</span>
+              <span className={textClass}>{maxDistance[locale]}</span>
             </div>
           </>
         ) : (
@@ -92,17 +94,17 @@ export const ProductCard: React.FC<ProductCardProps> = ({
             {/* Время работы */}
             <div className="flex flex-col items-center">
               <Clock3 className={iconClass} />
-              <span className={textClass}>{batteryCapacity}</span>
+              <span className={textClass}>{batteryCapacity[locale]}</span>
             </div>
             {/* Пылесборник */}
             <div className="flex flex-col items-center">
               <Trash2 className={iconClass} />
-              <span className={textClass}>{volume}</span>
+              <span className={textClass}>{volume[locale]}</span>
             </div>
             {/* Ширина уборки */}
             <div className="flex flex-col items-center">
               <Ruler className={iconClass} />
-              <span className={textClass}>{maxDistance}</span>
+              <span className={textClass}>{maxDistance[locale]}</span>
             </div>
           </>
         )}
@@ -118,4 +120,4 @@ export const ProductCard: React.FC<ProductCardProps> = ({
   );
 };
 const iconClass = "w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-gray-700 mb-1";
-const textClass = "text-xs lg:text-sm text-gray-700";
+const textClass = "max-w-[70px] text-xs lg:text-sm text-gray-700";

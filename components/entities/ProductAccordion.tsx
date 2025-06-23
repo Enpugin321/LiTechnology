@@ -4,10 +4,17 @@ import { useState } from "react";
 import { ProductAccordionItem } from "./ProductAccordionItem";
 
 interface ProductAccordionProps {
-  specs: Record<string, Array<{ param: string; value: string }>>;
+  locale: "ru" | "kz";
+  specs: Array<{
+    label: { ru: string; kz: string };
+    items: Array<{
+      param: { ru: string; kz: string };
+      value: { ru: string; kz: string };
+    }>;
+  }>;
 }
 
-export const ProductAccordion = ({ specs }: ProductAccordionProps) => {
+export const ProductAccordion = ({ locale, specs }: ProductAccordionProps) => {
   const [activeId, setActiveId] = useState<number | null>(1); // Первый элемент открыт по умолчанию
 
   const toggleAccordion = (id: number) => {
@@ -15,16 +22,14 @@ export const ProductAccordion = ({ specs }: ProductAccordionProps) => {
   };
 
   // Преобразуем данные из props в нужный формат
-  const accordionData = Object.entries(specs).map(
-    ([title, specifications], index) => ({
-      id: index + 1,
-      title,
-      specifications: specifications.map((spec) => ({
-        parameter: spec.param,
-        value: spec.value,
-      })),
-    })
-  );
+  const accordionData = specs.map((section, index) => ({
+    id: index + 1,
+    title: section.label[locale],
+    specifications: section.items.map((spec) => ({
+      parameter: spec.param[locale],
+      value: spec.value[locale],
+    })),
+  }));
 
   return (
     <div className="bg-white">

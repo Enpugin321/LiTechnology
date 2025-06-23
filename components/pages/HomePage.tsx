@@ -1,15 +1,19 @@
+"use server";
+
 import React from "react";
 import { Container } from "@/components/shared";
 import { AboutUs, WhyChooseUs, CatalogCards } from "@/components/widgets";
 import { ContactMap } from "@/components/widgets/ContactMap";
 import BigLogo from "@/public/images/BigLogo.svg";
 import Image from "next/image";
+import { TFunction } from "@/app/[locale]/page";
 
 interface Props {
   className?: string;
+  t: TFunction;
 }
 
-export const HomePage: React.FC<Props> = ({}) => {
+export const HomePage: React.FC<Props> = async ({ t }) => {
   return (
     <div className="min-h-[1000px] flex flex-col bg-white">
       <Container className="flex flex-col relative items-center justify-center h-[45vh] sm:h-[55vh] md:h-[75vh] w-full bg-primaryCustom pt-8">
@@ -20,8 +24,7 @@ export const HomePage: React.FC<Props> = ({}) => {
             className="w-1/6 xl:w-1/5 h-auto hidden md:block"
           />
           <h2 className=" font-normal font-montserrat max-w-xs text-center  text-white text-sm sm:max-w-sm xl:text-xl xl:max-w-xl">
-            Ваш надежный партнер в сфере агротехнологий и роботизированной
-            уборки
+            {t("hero.title")}
           </h2>
         </div>
 
@@ -32,10 +35,10 @@ export const HomePage: React.FC<Props> = ({}) => {
       </Container>
       <Container className="mt-[20vw] flex flex-col gap-8 md:gap-16">
         <div id="about-us">
-          <AboutUs />
+          <AboutUs t={t} />
         </div>
         <div id="advantages">
-          <WhyChooseUs />
+          <WhyChooseUs t={t} />
         </div>
         <div id="contacts">
           <ContactMap />

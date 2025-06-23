@@ -5,18 +5,27 @@ import { useState } from "react";
 import { Button } from "@/components/shared/ui/Button";
 import { OrderButton } from "@/components/features/OrderButton";
 import { ChevronDown } from "lucide-react";
+import { useRouter, usePathname } from "next/navigation";
+import { useLocale } from "next-intl";
 
 interface Props {
   className?: string;
   showContactButton?: boolean;
+  t: (key: string) => string;
 }
 
 export const HeaderActions: React.FC<Props> = ({
   className,
   showContactButton = true,
+  t,
 }) => {
-  const [selectedLanguage, setSelectedLanguage] = useState("RU");
+  const locale = useLocale();
+  const [selectedLanguage, setSelectedLanguage] = useState(
+    locale.toUpperCase()
+  );
   const [isLanguageDropdownOpen, setIsLanguageDropdownOpen] = useState(false);
+  const router = useRouter();
+  const pathname = usePathname();
 
   const languages = [
     { code: "RU", label: "RU" },
@@ -28,6 +37,12 @@ export const HeaderActions: React.FC<Props> = ({
   };
 
   const selectLanguage = (language: string) => {
+    const newLocale = language.toLowerCase();
+    const segments = pathname.split("/").filter(Boolean);
+    segments[0] = newLocale;
+    const newPath = "/" + segments.join("/");
+
+    router.push(newPath);
     setSelectedLanguage(language);
     setIsLanguageDropdownOpen(false);
   };
@@ -36,7 +51,7 @@ export const HeaderActions: React.FC<Props> = ({
     <div className={`flex items-center  ${className}`}>
       {showContactButton && (
         <OrderButton
-          title="связаться"
+          title={t("reachUs")}
           className="uppercase font-montserrat px-4 py-1 text-[10px] xl:py-2 xl:text-xs font-semibold bg-primaryCustom text-white rounded-3xl"
         />
       )}
