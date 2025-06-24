@@ -17,6 +17,7 @@ export default async function LocaleLayout({
   children: React.ReactNode;
   params: { locale: "ru" | "kz" };
 }>) {
+  const { locale } = await params;
   const messages = await getMessages();
 
   return (
@@ -26,7 +27,7 @@ export default async function LocaleLayout({
       </Container>
       <main>{children}</main>
       <Container className="bg-gray-100">
-        <Footer locale={params.locale} />
+        <Footer locale={locale} />
       </Container>
     </NextIntlClientProvider>
   );

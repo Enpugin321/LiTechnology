@@ -2,6 +2,7 @@
 
 import type React from "react";
 import { useState, useEffect } from "react";
+import { useTranslations } from "next-intl";
 import { Button } from "@/components/shared/ui/Button";
 import {
   Dialog,
@@ -18,8 +19,6 @@ interface ContactModalProps {
   onOpenChange: (open: boolean) => void;
   productName?: string;
   productPrice?: string;
-  title?: string;
-  description?: string;
 }
 
 const preventScroll = (e: TouchEvent) => {
@@ -41,8 +40,6 @@ export const ContactModal: React.FC<ContactModalProps> = ({
   onOpenChange,
   productName,
   productPrice,
-  title = "Свяжитесь с нами",
-  description = "Оставьте свои контактные данные и мы свяжемся с вами в ближайшее время",
 }) => {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -50,6 +47,8 @@ export const ContactModal: React.FC<ContactModalProps> = ({
     name: "",
     phone: "",
   });
+  const [error, setError] = useState("");
+  const t = useTranslations("contactModal");
 
   useEffect(() => {
     if (isOpen) {
@@ -89,7 +88,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({
     e.preventDefault();
 
     if (!formData.name.trim() || !formData.phone.trim()) {
-      alert("Пожалуйста, заполните все поля");
+      setError(t("alertIncomplete"));
       return;
     }
 
@@ -127,7 +126,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({
       }, 2000);
     } catch (error) {
       console.error(error);
-      alert("Не удалось отправить заявку. Попробуйте позже.");
+      setError(t("alertError"));
     } finally {
       setLoading(false);
     }
@@ -154,18 +153,18 @@ export const ContactModal: React.FC<ContactModalProps> = ({
                 </div>
                 <DialogHeader>
                   <DialogTitle className="text-3xl font-bold text-center">
-                    {title}
+                    {t("title")}
                   </DialogTitle>
                 </DialogHeader>
                 <p className="text-muted-foreground text-center">
-                  {description}
+                  {t("description")}
                 </p>
               </div>
 
               {productName && productPrice && (
                 <div className="bg-white dark:bg-slate-800 rounded-lg p-4 border">
                   <h3 className="font-semibold text-sm text-muted-foreground mb-1">
-                    Выбранный товар:
+                    {t("selectedProduct")}
                   </h3>
                   <p className="font-medium">{productName}</p>
                   <p className="text-primaryCustom font-bold text-lg">
@@ -182,14 +181,14 @@ export const ContactModal: React.FC<ContactModalProps> = ({
                       htmlFor="contact-name"
                       className="text-sm font-medium"
                     >
-                      Ваше имя
+                      {t("nameLabel")}
                     </Label>
                     <div className="relative">
                       <User className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                       <Input
                         id="contact-name"
                         type="text"
-                        placeholder="Введите ваше имя"
+                        placeholder={t("namePlaceholder")}
                         value={formData.name}
                         onChange={(e) =>
                           handleInputChange("name", e.target.value)
@@ -205,7 +204,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({
                       htmlFor="contact-phone"
                       className="text-sm font-medium"
                     >
-                      Ваш контактный телефон
+                      {t("phoneLabel")}
                     </Label>
                     <div className="relative">
                       <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
@@ -232,27 +231,29 @@ export const ContactModal: React.FC<ContactModalProps> = ({
                   {loading ? (
                     <div className="flex items-center gap-2">
                       <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                      Отправка...
+                      {t("sending")}
                     </div>
                   ) : success ? (
                     <div className="flex items-center gap-2">
                       <div className="w-4 h-4 bg-green-500 rounded-full flex items-center justify-center">
                         <div className="w-2 h-1 bg-white rounded-full transform rotate-45" />
                       </div>
-                      Отправлено!
+                      {t("sent")}
                     </div>
                   ) : (
                     <div className="flex items-center gap-2 text-white">
-                      {productName ? "Отправить заказ" : "Отправить заявку"}
+                      {productName ? t("sendOrder") : t("sendRequest")}
                       <ArrowRight className="h-4 w-4" />
                     </div>
                   )}
                 </Button>
               </form>
 
+              {error && <span className="text-red-600">{error}</span>}
+
               {/* Footer */}
               <p className="text-xs text-muted-foreground text-center">
-                Нажимая кнопку, вы соглашаетесь с обработкой персональных данных
+                {t("agreementNote")}
               </p>
             </div>
           </div>

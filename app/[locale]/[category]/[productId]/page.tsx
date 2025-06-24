@@ -5,6 +5,7 @@ import { products } from "@/components/shared/data/products";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
+import { getTranslations } from "next-intl/server";
 
 interface ProductPageProps {
   params: Promise<{
@@ -21,6 +22,7 @@ export const metadata = {
 
 export default async function DronePage({ params }: ProductPageProps) {
   const { locale, category, productId } = await params;
+  const t = await getTranslations("productPage");
 
   const droneId = productId;
   const productData = products[category][droneId];
@@ -78,12 +80,12 @@ export default async function DronePage({ params }: ProductPageProps) {
                   {productData.name[locale]}
                 </h3>
                 <p className="text-sm text-gray-600 mb-5 sm:mb-0">
-                  {category === "drones" ? "Дрон" : "Пылесос"}
+                  {category === "drones" ? t("dronesLabel") : t("vacuumsLabel")}
                 </p>
               </div>
 
               <OrderButton
-                title="Заказать"
+                title={t("order")}
                 className="px-6 py-3 rounded-lg flex items-center gap-2 transition-all duration-200 hover:scale-105"
                 arrow={true}
                 productName={productData.name[locale]}
@@ -95,10 +97,4 @@ export default async function DronePage({ params }: ProductPageProps) {
       </div>
     </div>
   );
-}
-
-export async function generateStaticParams() {
-  return products.drones.map((drone) => ({
-    id: drone.id.toString(),
-  }));
 }
