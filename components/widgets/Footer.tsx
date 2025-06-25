@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { MessageCircle, Send } from "lucide-react";
+import { MessageCircle, Send, Instagram } from "lucide-react";
 import BigLogo from "@/public/images/BigLogo.svg";
 import { NavigationFooterMenu } from "@/components/entities/NavigationFooterMenu";
 import { getTranslations } from "next-intl/server";
@@ -57,6 +57,15 @@ export const Footer = async ({ locale }: ProductPageProps) => {
                 className="w-12 h-12 bg-black rounded-lg flex items-center justify-center hover:bg-gray-800 transition-colors"
               >
                 <Send className="w-6 h-6 text-white" />
+              </Link>
+              {/* Instagram */}
+              <Link
+                href="https://www.instagram.com/li.technology?igsh=MWEyc2hmYnB5aWhoMQ=="
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-12 h-12 bg-black rounded-lg flex items-center justify-center hover:bg-gray-800 transition-colors"
+              >
+                <Instagram className="w-6 h-6 text-white" />
               </Link>
             </div>
           </div>

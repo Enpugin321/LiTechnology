@@ -45,13 +45,13 @@ const Map = () => {
 
     load().then((mapglAPI) => {
       map = new mapglAPI.Map("map-container", {
-        center: [76.9286, 43.2567],
+        center: [76.842675, 43.198304],
         zoom: 15,
         key: "0e2126b8-5f99-4017-9bff-a5f46c631742",
       });
 
       new mapglAPI.Marker(map, {
-        coordinates: [76.9286, 43.2567],
+        coordinates: [76.842675, 43.198304],
       });
     });
 

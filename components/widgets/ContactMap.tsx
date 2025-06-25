@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { MapPin, Phone, MessageCircle, Send } from "lucide-react";
+import { MapPin, Phone, MessageCircle, Send, Instagram } from "lucide-react";
 import Map from "@/components/features/Map";
 import { useTranslations } from "next-intl";
 
@@ -9,15 +9,9 @@ import { useTranslations } from "next-intl";
 export const ContactMap = () => {
   const t = useTranslations("HomePage.contact");
 
-  const handleWhatsappClick = () => {
+  const handleLinkClick = (Link: string) => {
     if (typeof window !== "undefined") {
-      window.open("https://wa.me/77001307888", "_blank");
-    }
-  };
-
-  const handleTelegramClick = () => {
-    if (typeof window !== "undefined") {
-      window.open("https://t.me/your_telegram_username", "_blank");
+      window.open(Link, "_blank");
     }
   };
 
@@ -46,7 +40,7 @@ export const ContactMap = () => {
             </button>
 
             <button
-              onClick={handleWhatsappClick}
+              onClick={() => handleLinkClick("https://wa.me/77001307888")}
               className="bg-[#0E3247] w-full text-white text-sm sm:text-base md:text-lg py-3 sm:py-4 px-3 sm:px-4 rounded flex items-center gap-2 sm:gap-3 hover:bg-[#0e3151]/90 transition-colors"
             >
               <MessageCircle className="w-5 h-5 shrink-0" />
@@ -54,11 +48,25 @@ export const ContactMap = () => {
             </button>
 
             <button
-              onClick={handleTelegramClick}
+              onClick={() =>
+                handleLinkClick("https://t.me/your_telegram_username")
+              }
               className="bg-[#0E3247] w-full text-white text-sm sm:text-base md:text-lg py-3 sm:py-4 px-3 sm:px-4 rounded flex items-center gap-2 sm:gap-3 hover:bg-[#0e3151]/90 transition-colors"
             >
               <Send className="w-5 h-5 shrink-0" />
               <span>{t("telegram")}</span>
+            </button>
+
+            <button
+              onClick={() =>
+                handleLinkClick(
+                  "https://www.instagram.com/li.technology?igsh=MWEyc2hmYnB5aWhoMQ=="
+                )
+              }
+              className="bg-[#0E3247] w-full text-white text-sm sm:text-base md:text-lg py-3 sm:py-4 px-3 sm:px-4 rounded flex items-center gap-2 sm:gap-3 hover:bg-[#0e3151]/90 transition-colors"
+            >
+              <Instagram className="w-5 h-5 shrink-0" />
+              <span>{t("instagram")}</span>
             </button>
           </div>
         </div>

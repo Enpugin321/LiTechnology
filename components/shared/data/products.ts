@@ -34,6 +34,7 @@ export const products: { drones: Product[]; vacuums: Product[] } = {
         "/images/products/drones/P100/p100-4.png",
         "/images/products/drones/P100/p100-5.png",
         "/images/products/drones/P100/p100-6.png",
+        "https://www.youtube.com/embed/Z-KZpplnkWg?si=8BaTC5_j39cV0PQd",
       ],
       description: {
         ru: "XAG P100 Pro — передовой агродрон с улучшенной системой опрыскивания RevoSpray 3 и разбрасывания RevoCast 3. Обладает защитой IPX6K, поддерживает RTK-навигацию, 4D-радар, камеру обзора и высокую мощность моторов. Предназначен для высокоточной обработки сельскохозяйственных культур в автономном и ручном режимах.",
@@ -292,7 +293,10 @@ export const products: { drones: Product[]; vacuums: Product[] } = {
       name: { ru: "Phantas", kz: "Phantas" },
       price: "$35,000",
       previewImage: "/images/products/vacuums/Phantas/phantasPreview.avif",
-      images: ["/images/products/vacuums/Phantas/phantasPreview.avif"],
+      images: [
+        "/images/products/vacuums/Phantas/phantasPreview.avif",
+        "https://www.youtube.com/embed/AHrLejWi9ho?si=w8KklnoIQk1srnp4",
+      ],
       description: {
         ru: "Phantas — универсальный робот-пылесос с несколькими режимами уборки, включая сухую, влажную и пылесос. Оснащён интеллектуальными сенсорами.",
         kz: "Phantas — әмбебап робот-шаңсорғыш, құрғақ, ылғалды және шаңсорғыш режимдерін қолдайды. Ақылды сенсорлармен жабдықталған.",
@@ -419,6 +423,7 @@ export const products: { drones: Product[]; vacuums: Product[] } = {
         "/images/products/vacuums/Scrubber50/Scrubber50-3.png",
         "/images/products/vacuums/Scrubber50/Scrubber50-4.png",
         "/images/products/vacuums/Scrubber50/Scrubber50-5.png",
+        "https://www.youtube.com/embed/2LvFVi1FNSo?si=Rj8go829CsPpJhXt",
       ],
       description: {
         ru: "Scrubber 50 — многофункциональный уборочный робот с возможностью выбора щёток. Подходит для различных типов полов.",
@@ -551,6 +556,7 @@ export const products: { drones: Product[]; vacuums: Product[] } = {
         "/images/products/vacuums/Scrubber75/Scrubber75-3.png",
         "/images/products/vacuums/Scrubber75/Scrubber75-4.png",
         "/images/products/vacuums/Scrubber75/Scrubber75-5.png",
+        "https://www.youtube.com/embed/lAWBz7byrBs?si=zUyezDz2_AjQa_Qt",
       ],
       description: {
         ru: "Scrubber 75 — высокопроизводительный автономный поломоечный робот для уборки больших помещений.",
@@ -670,6 +676,7 @@ export const products: { drones: Product[]; vacuums: Product[] } = {
         "/images/products/vacuums/Vacuum40/Vacuum40-3.png",
         "/images/products/vacuums/Vacuum40/Vacuum40-4.png",
         "/images/products/vacuums/Vacuum40/Vacuum40-5.png",
+        "https://www.youtube.com/embed/MP7TpIRtwTE?si=M3mLU5YFTXLClP1r",
       ],
       description: {
         ru: "Vacuum 40 — автономный пылесос для коммерческих помещений. Имеет вместительный мешок для пыли и высокую эффективность.",
