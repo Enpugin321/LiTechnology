@@ -1,12 +1,10 @@
-"use server";
-
 import React from "react";
 import { Container } from "@/components/shared";
 import { AboutUs, WhyChooseUs, CatalogCards } from "@/components/widgets";
 import { ContactMap } from "@/components/widgets/ContactMap";
 import BigLogo from "@/public/images/BigLogo.svg";
 import Image from "next/image";
-import { TFunction } from "@/app/[locale]/page";
+import { TFunction } from "@/components/shared/data/types";
 
 interface Props {
   className?: string;

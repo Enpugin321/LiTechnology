@@ -1,6 +1,6 @@
 import type React from "react";
 import Image from "next/image";
-import { TFunction } from "@/app/[locale]/page";
+import { TFunction } from "@/components/shared/data/types";
 
 interface FeatureCardProps {
   title: string;

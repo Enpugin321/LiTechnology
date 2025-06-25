@@ -5,7 +5,7 @@ import { products } from "@/components/shared/data/products";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
-import { getTranslations } from "next-intl/server";
+import { setRequestLocale, getTranslations } from "next-intl/server";
 
 interface ProductPageProps {
   params: Promise<{
@@ -22,6 +22,7 @@ export const metadata = {
 
 export default async function DronePage({ params }: ProductPageProps) {
   const { locale, category, productId } = await params;
+  setRequestLocale(locale);
   const t = await getTranslations("productPage");
 
   const droneId = productId;

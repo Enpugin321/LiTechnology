@@ -3,13 +3,22 @@ import Image from "next/image";
 import { MessageCircle, Send, Instagram } from "lucide-react";
 import BigLogo from "@/public/images/BigLogo.svg";
 import { NavigationFooterMenu } from "@/components/entities/NavigationFooterMenu";
-import { getTranslations } from "next-intl/server";
+import { setRequestLocale, getTranslations } from "next-intl/server";
+import { hasLocale } from "next-intl";
+import { routing } from "@/i18n/routing";
+import { notFound } from "next/navigation";
 
-interface ProductPageProps {
+interface FooterProps {
   locale: "ru" | "kz";
 }
 
-export const Footer = async ({ locale }: ProductPageProps) => {
+export const Footer = async ({ locale }: FooterProps) => {
+  if (!hasLocale(routing.locales, locale)) {
+    notFound();
+  }
+
+  setRequestLocale(locale);
+
   const t = await getTranslations("footer");
 
   return (
