@@ -50,7 +50,7 @@ export const Footer = async ({ locale }: FooterProps) => {
             <div className="flex space-x-4">
               {/* WhatsApp */}
               <Link
-                href="https://wa.me/your-number"
+                href="https://wa.me/77085694090"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-12 h-12 bg-black rounded-lg flex items-center justify-center hover:bg-gray-800 transition-colors"
@@ -60,7 +60,7 @@ export const Footer = async ({ locale }: FooterProps) => {
 
               {/* Telegram */}
               <Link
-                href="https://t.me/your-channel"
+                href="https://t.me/Iamtheeking"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-12 h-12 bg-black rounded-lg flex items-center justify-center hover:bg-gray-800 transition-colors"

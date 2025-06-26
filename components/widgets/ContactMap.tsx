@@ -40,7 +40,7 @@ export const ContactMap = () => {
             </button>
 
             <button
-              onClick={() => handleLinkClick("https://wa.me/77001307888")}
+              onClick={() => handleLinkClick("https://wa.me/77085694090")}
               className="bg-[#0E3247] w-full text-white text-sm sm:text-base md:text-lg py-3 sm:py-4 px-3 sm:px-4 rounded flex items-center gap-2 sm:gap-3 hover:bg-[#0e3151]/90 transition-colors"
             >
               <MessageCircle className="w-5 h-5 shrink-0" />
@@ -48,9 +48,7 @@ export const ContactMap = () => {
             </button>
 
             <button
-              onClick={() =>
-                handleLinkClick("https://t.me/your_telegram_username")
-              }
+              onClick={() => handleLinkClick("https://t.me/Iamtheeking")}
               className="bg-[#0E3247] w-full text-white text-sm sm:text-base md:text-lg py-3 sm:py-4 px-3 sm:px-4 rounded flex items-center gap-2 sm:gap-3 hover:bg-[#0e3151]/90 transition-colors"
             >
               <Send className="w-5 h-5 shrink-0" />
