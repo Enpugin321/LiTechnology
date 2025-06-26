@@ -33,7 +33,7 @@ export default async function LocaleLayout({
   return (
     <NextIntlClientProvider messages={messages}>
       <Container className="absolute top-4 left-0 right-0 z-50 px-6">
-        <Header />
+        <Header locale={locale} />
       </Container>
       <main>{children}</main>
       <Container className="bg-gray-100">

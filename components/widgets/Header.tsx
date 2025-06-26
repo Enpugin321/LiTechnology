@@ -13,16 +13,18 @@ import { Menu, X } from "lucide-react";
 import { ContactModal } from "@/components/shared/ContactModal";
 import { useTranslations } from "next-intl";
 
-interface Props {
+interface HeaderProps {
   className?: string;
+  locale: "ru" | "kz";
 }
 
-export const Header: React.FC<Props> = ({ className }) => {
+export const Header: React.FC<HeaderProps> = ({ className, locale }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isContactOpen, setIsContactOpen] = useState(false);
   const dialogRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
   const pathname = usePathname();
+  const newHref = `/${locale}/`;
   const t = useTranslations("nav");
 
   console.log(router, pathname);
@@ -152,15 +154,6 @@ export const Header: React.FC<Props> = ({ className }) => {
           </button>
 
           {/* Логотип по центру */}
-          <Link href={"/"} className="flex-1 flex justify-center">
-            <Image
-              src={BigLogo || "/placeholder.svg"}
-              width={64}
-              height={20}
-              alt="Li Technology"
-              className="dark:invert"
-            />
-          </Link>
 
           {/* Кнопка смены языка */}
           <div className="w-1/3 flex items-end justify-end">
@@ -171,13 +164,10 @@ export const Header: React.FC<Props> = ({ className }) => {
 
       {/* Mobile Menu Overlay */}
       {isMobileMenuOpen && (
-        <div
-          ref={dialogRef}
-          className="fixed inset-0 z-50 bg-white dark:bg-black md:hidden"
-        >
+        <div ref={dialogRef} className="fixed inset-0 z-50 bg-white md:hidden">
           <div className="flex flex-col h-full overflow-hidden">
             {/* Header мобильного меню */}
-            <div className="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700">
+            <div className="flex items-center justify-between p-6 border-b border-gray-200">
               <Image
                 src={BigLogo || "/placeholder.svg"}
                 width={80}
@@ -185,10 +175,7 @@ export const Header: React.FC<Props> = ({ className }) => {
                 alt="Li Technology"
                 className="dark:invert"
               />
-              <button
-                onClick={closeMobileMenu}
-                className="p-2 text-gray-700 dark:text-gray-200"
-              >
+              <button onClick={closeMobileMenu} className="p-2 text-gray-700 ">
                 <X className="w-6 h-6" />
               </button>
             </div>
@@ -199,7 +186,7 @@ export const Header: React.FC<Props> = ({ className }) => {
                 <li>
                   <Link
                     href="/"
-                    className="block text-lg font-medium text-gray-900 dark:text-white py-2 border-b border-gray-200 dark:border-gray-700"
+                    className="block text-lg font-medium text-gray-900 py-2 border-b border-gray-200 "
                     onClick={closeMobileMenu}
                   >
                     {t("home")}
@@ -207,8 +194,8 @@ export const Header: React.FC<Props> = ({ className }) => {
                 </li>
                 <li>
                   <Link
-                    href="/catalog/drones"
-                    className="block text-lg font-medium text-gray-900 dark:text-white py-2 border-b border-gray-200 dark:border-gray-700"
+                    href={newHref + "drones"}
+                    className="block text-lg font-medium text-gray-900 py-2 border-b border-gray-200 "
                     onClick={closeMobileMenu}
                   >
                     {t("drones")}
@@ -216,8 +203,8 @@ export const Header: React.FC<Props> = ({ className }) => {
                 </li>
                 <li>
                   <Link
-                    href="/catalog/vacuums"
-                    className="block text-lg font-medium text-gray-900 dark:text-white py-2 border-b border-gray-200 dark:border-gray-700"
+                    href={newHref + "vacuums"}
+                    className="block text-lg font-medium text-gray-900  py-2 border-b border-gray-200"
                     onClick={closeMobileMenu}
                   >
                     {t("vacuums")}
@@ -225,7 +212,7 @@ export const Header: React.FC<Props> = ({ className }) => {
                 </li>
                 <li>
                   <button
-                    className="block w-full text-left text-lg font-medium text-gray-900 dark:text-white py-2 border-b border-gray-200 dark:border-gray-700"
+                    className="block w-full text-left text-lg font-medium text-gray-900 py-2 border-b border-gray-200 "
                     onClick={() => handleScrollToSection("about-us")}
                   >
                     {t("about")}
@@ -233,7 +220,7 @@ export const Header: React.FC<Props> = ({ className }) => {
                 </li>
                 <li>
                   <button
-                    className="block w-full text-left text-lg font-medium text-gray-900 dark:text-white py-2 border-b border-gray-200 dark:border-gray-700"
+                    className="block w-full text-left text-lg font-medium text-gray-900 py-2 border-b border-gray-200"
                     onClick={() => handleScrollToSection("advantages")}
                   >
                     {t("advantages")}
@@ -241,7 +228,7 @@ export const Header: React.FC<Props> = ({ className }) => {
                 </li>
                 <li>
                   <button
-                    className="block w-full text-left text-lg font-medium text-gray-900 dark:text-white py-2 border-b border-gray-200 dark:border-gray-700"
+                    className="block w-full text-left text-lg font-medium text-gray-900 py-2 border-b border-gray-200"
                     onClick={() => handleScrollToSection("contacts")}
                   >
                     {t("contacts")}
@@ -249,7 +236,7 @@ export const Header: React.FC<Props> = ({ className }) => {
                 </li>
                 <li>
                   <button
-                    className="block w-full text-left text-lg font-medium text-gray-900 dark:text-white py-2 border-b border-gray-200 dark:border-gray-700"
+                    className="block w-full text-left text-lg font-medium text-gray-900 py-2 border-b border-gray-200"
                     onClick={openContactForm}
                   >
                     {t("reachUs")}

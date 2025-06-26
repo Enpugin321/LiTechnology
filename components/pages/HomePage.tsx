@@ -14,12 +14,12 @@ interface Props {
 export const HomePage: React.FC<Props> = async ({ t }) => {
   return (
     <div className="min-h-[1000px] flex flex-col bg-white">
-      <Container className="flex flex-col relative items-center justify-center h-[45vh] sm:h-[55vh] md:h-[75vh] w-full bg-primaryCustom pt-8">
+      <Container className="flex flex-col relative items-center justify-center h-[45vh] xs425:h-[55vh] md:h-[75vh] w-full bg-primaryCustom pt-8">
         <div className="flex flex-col w-full items-center gap-3 transform -translate-y-1/3">
           <Image
             src={BigLogo}
             alt=""
-            className="w-1/6 xl:w-1/5 h-auto hidden md:block"
+            className="w-1/2 xs425:w-1/3 md:w-1/5 xl:w-1/4 h-auto md:block"
           />
           <h2 className=" font-normal font-montserrat max-w-xs text-center  text-white text-sm sm:max-w-sm xl:text-xl xl:max-w-xl">
             {t("hero.title")}

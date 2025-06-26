@@ -25,7 +25,7 @@ export const products: { drones: Product[]; vacuums: Product[] } = {
         ru: "XAG P100 Pro",
         kz: "XAG P100 Pro",
       },
-      price: "$34,000",
+      price: "11 160 000 ₸",
       previewImage: "/images/products/drones/P100/p100Preview.png",
       images: [
         "/images/products/drones/P100/p100-1.png",
@@ -291,7 +291,7 @@ export const products: { drones: Product[]; vacuums: Product[] } = {
     {
       id: 0,
       name: { ru: "Phantas", kz: "Phantas" },
-      price: "$35,000",
+      price: "7 613 000 ₸",
       previewImage: "/images/products/vacuums/Phantas/phantasPreview.avif",
       images: [
         "/images/products/vacuums/Phantas/phantasPreview.avif",
@@ -415,7 +415,7 @@ export const products: { drones: Product[]; vacuums: Product[] } = {
     {
       id: 1,
       name: { ru: "Scrubber 50", kz: "Scrubber 50" },
-      price: "$35,000",
+      price: "21 263 000 ₸",
       previewImage: "/images/products/vacuums/Scrubber50/scrubber50Preview.png",
       images: [
         "/images/products/vacuums/Scrubber50/Scrubber50-1.png",
@@ -548,7 +548,7 @@ export const products: { drones: Product[]; vacuums: Product[] } = {
     {
       id: 2,
       name: { ru: "Scrubber 75", kz: "Scrubber 75" },
-      price: "$35,000",
+      price: "32 815 000 ₸",
       previewImage: "/images/products/vacuums/Scrubber75/scrubber75Preview.png",
       images: [
         "/images/products/vacuums/Scrubber75/Scrubber75-1.png",
@@ -668,7 +668,7 @@ export const products: { drones: Product[]; vacuums: Product[] } = {
     {
       id: 3,
       name: { ru: "Vacuum 40", kz: "Vacuum 40" },
-      price: "$35,000",
+      price: "14 490 000 ₸",
       previewImage: "/images/products/vacuums/Vacuum40/vacuum40Preview.png",
       images: [
         "/images/products/vacuums/Vacuum40/Vacuum40-1.png",

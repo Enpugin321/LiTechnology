@@ -28,8 +28,6 @@ export default async function DronePage({ params }: ProductPageProps) {
   const droneId = productId;
   const productData = products[category][droneId];
 
-  console.log(productData);
-
   if (!productData) {
     console.log(`Дрон с ID ${droneId} не найден`);
     notFound();
@@ -39,7 +37,7 @@ export default async function DronePage({ params }: ProductPageProps) {
     <div className="min-h-screen h-fit bg-gray-100">
       <div className="fixed bottom-4 left-4 z-50">
         <Link
-          href={`/catalog/${category}`}
+          href={`/${locale}/${category}`}
           className="inline-flex items-center gap-2 px-4 py-2 bg-white hover:bg-gray-50 text-gray-700 hover:text-gray-900 rounded-lg shadow-md hover:shadow-lg transition-all duration-200 border border-gray-200"
         >
           <ArrowLeft className="h-4 w-4" />

@@ -10,6 +10,7 @@ import { hasLocale } from "next-intl";
 interface Props {
   params: Promise<{ locale: "ru" | "kz"; category: "drones" | "vacuums" }>;
 }
+export const dynamic = "force-dynamic";
 
 export default async function CatalogPage({ params }: Props) {
   const { locale, category } = await params;

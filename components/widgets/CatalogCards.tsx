@@ -21,7 +21,18 @@ export const CatalogCards: React.FC<Props> = () => {
     <div className="flex flex-row justify-center gap-6 md:gap-12">
       <Link
         href={newHref + "drones"}
-        className="group rounded-lg bg-[#250607] hover:bg-[#472626] w-full md:w-[35%] aspect-[7/5] flex flex-col p-2 sm:p-4 cursor-pointer transition-all duration-500 ease-in-out overflow-hidden relative"
+        className="group rounded-lg w-full md:w-[35%] aspect-[7/5] flex flex-col p-2 sm:p-4 cursor-pointer transition-all duration-500 ease-in-out overflow-hidden relative"
+        style={{
+          background: "radial-gradient(circle, #6B3A3A 0%, #3A1010 70%)",
+        }}
+        onMouseEnter={(e) => {
+          e.currentTarget.style.background =
+            "radial-gradient(circle, #8B4A4A 0%, #6B3A3A 70%)";
+        }}
+        onMouseLeave={(e) => {
+          e.currentTarget.style.background =
+            "radial-gradient(circle, #6B3A3A 0%, #3A1010 70%)";
+        }}
       >
         {/* Заголовок и подзаголовок */}
         <div className="relative w-full">
@@ -60,7 +71,18 @@ export const CatalogCards: React.FC<Props> = () => {
 
       <Link
         href={newHref + "vacuums"}
-        className="group rounded-lg bg-[#060B25] hover:bg-[#262B47] w-full md:w-[35%] aspect-[7/5] flex flex-col pt-2 sm:pt-4 px-2 sm:px-4 cursor-pointer transition-all duration-500 ease-in-out overflow-hidden relative"
+        className="group rounded-lg  w-full md:w-[35%] aspect-[7/5] flex flex-col pt-2 sm:pt-4 px-2 sm:px-4 cursor-pointer transition-all duration-500 ease-in-out overflow-hidden relative"
+        style={{
+          background: "radial-gradient(circle, #3A4060 0%, #0F1535 70%)",
+        }}
+        onMouseEnter={(e) => {
+          e.currentTarget.style.background =
+            "radial-gradient(circle, #4A5070 0%, #3A4060 70%)";
+        }}
+        onMouseLeave={(e) => {
+          e.currentTarget.style.background =
+            "radial-gradient(circle, #3A4060 0%, #0F1535 70%)";
+        }}
       >
         {/* Заголовок и подзаголовок */}
         <div className="relative w-full">
